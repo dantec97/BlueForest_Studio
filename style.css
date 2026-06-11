@@ -1,0 +1,230 @@
+/* =====================
+   RESET & BASE
+   ===================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #A70202;
+    --black: #0a0a0a;
+    --dark: #111111;
+    --text-light: #e0e0e0;
+    --text-muted: #888888;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--text-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+}
+
+/* =====================
+   HERO SECTION
+   ===================== */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    filter: brightness(0.45);
+    transition: filter 0.6s ease;
+}
+
+.hero:hover .hero-img {
+    filter: brightness(0.35);
+}
+
+.hero-overlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    max-width: 900px;
+    animation: fadeUp 1s ease both;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    text-shadow: 0 0 30px rgba(167, 2, 2, 0.8), 0 2px 10px rgba(0,0,0,0.9);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+}
+
+.hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: var(--red);
+    font-style: italic;
+    letter-spacing: 0.08em;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+}
+
+/* =====================
+   CONTENT WRAPPER
+   ===================== */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+/* =====================
+   FEATURE SECTIONS
+   ===================== */
+.feature-section {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+    padding: 3rem 0;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.feature-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feature-section.reverse {
+    flex-direction: row-reverse;
+}
+
+.feature-img-wrap {
+    flex: 1 1 45%;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid rgba(167, 2, 2, 0.3);
+    box-shadow: 0 0 30px rgba(167, 2, 2, 0.15);
+}
+
+.feature-img-wrap img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.feature-img-wrap:hover img {
+    transform: scale(1.04);
+}
+
+.feature-text {
+    flex: 1 1 50%;
+}
+
+.feature-text h2 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--red);
+    margin-bottom: 1.2rem;
+    border-left: 4px solid var(--red);
+    padding-left: 0.8rem;
+}
+
+.feature-text ul {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-text ul li {
+    padding: 0.45rem 0 0.45rem 1.5rem;
+    position: relative;
+    color: var(--text-light);
+    font-size: 0.97rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.feature-text ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-size: 0.85rem;
+    top: 0.5rem;
+}
+
+/* =====================
+   DIVIDER
+   ===================== */
+.divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--red), transparent);
+    margin: 1rem 0;
+    opacity: 0.5;
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+footer {
+    background-color: var(--dark);
+    border-top: 1px solid rgba(167, 2, 2, 0.4);
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+/* =====================
+   ANIMATIONS
+   ===================== */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+@media (max-width: 768px) {
+    .feature-section,
+    .feature-section.reverse {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .feature-img-wrap img {
+        height: 240px;
+    }
+
+    .feature-text h2 {
+        font-size: 1.5rem;
+    }
+}
